@@ -44,6 +44,7 @@ import static org.junit.Assert.*;
     , manifest = "./src/test/AndroidManifest.xml"
     , constants = BuildConfig.class)
 public class SharedPreferencesTests extends PerformanceTests {
+  /* [ CONSTANTS ] ================================================================================================= */
 
   private static final String SOMETHING_TO_STORE = "something to store";
 
@@ -54,51 +55,31 @@ public class SharedPreferencesTests extends PerformanceTests {
   public static final String UNIT_TESTS_PREFS = "uniprefs.data.unit.tests.prefs";
   public static final String UNIT_TESTS_DB = "uniprefs.data.unit.tests";
 
+	/* [ MEMBERS ] =================================================================================================== */
+
   private final Set<String> TestSetValues = new HashSet<>();
   private String ExtraLongString;
 
-  @Override
-  public void configMeter() {
-
-  }
-
-  @Override
-  public void warmUp() {
-    if (null == TestSetValues || TestSetValues.isEmpty()) {
-      //			CountryDao dao = new CountryDao(getContext());
-      //			dao.init();
-      //
-      //			extracted = dao.getAll();
-
-      TestSetValues.add("set string #1");
-      TestSetValues.add("set string #2");
-      TestSetValues.add("set string #3");
-      TestSetValues.add("set string #4");
-
-      final StringBuilder dumpString = new StringBuilder(0xffff * 4);
-
-      while (dumpString.length() < 0xffff * 3) {
-        //                 0         0         0         0         0         0
-        dumpString.append("This is dummy string for testing the chunks logic .");
-      }
-
-      ExtraLongString = dumpString.toString();
-    }
-  }
+	/* [ GETTER / SETTER METHODS ] =================================================================================== */
 
   public Context getContext() {
     return RuntimeEnvironment.application;
-  }
-
-  private PreferencesUnified getPreferencesUnified() {
-    return new PreferencesUnified(getContext(), UNIT_TESTS_PREFS, OrgJsonSerializer.Instance);
   }
 
   private SharedPreferences getDbPreferences() {
     return PreferencesToDb.newInstance(getContext(), UNIT_TESTS_DB);
   }
 
-	/* ================================= [TESTS] ====================================== */
+  private PreferencesUnified getPreferencesUnified() {
+    return new PreferencesUnified(getContext(), UNIT_TESTS_PREFS, OrgJsonSerializer.Instance);
+  }
+
+	/* [ IMPLEMENTATION & HELPERS ] ================================================================================== */
+
+  @Override
+  public void configMeter() {
+
+  }
 
   @SmallTest
   public void test_00_PreferencesUnified_API() {
@@ -156,7 +137,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_02_SharedPreferences_StressTest_Apply() {
-
     meter().loop("run " + ITERATIONS + " edit applyies.");
     for (int i = 0, len = ITERATIONS; i < len; i++) {
       final SharedPreferences prefs = getContext().getSharedPreferences(UNIT_TESTS_DB, Service.MODE_PRIVATE);
@@ -172,7 +152,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_03_SharedPreferences_StressTest_Commit() {
-
     meter().loop("run " + ITERATIONS + " edit commits.");
     for (int i = 0, len = ITERATIONS; i < len; i++) {
       final SharedPreferences prefs = getContext().getSharedPreferences(UNIT_TESTS_DB, Service.MODE_PRIVATE);
@@ -188,7 +167,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_04_PreferencesUnified_StressTest_Apply() {
-
     meter().loop("run " + ITERATIONS_L + " edit applyies.");
     for (int i = 0, len = ITERATIONS_L; i < len; i++) {
       final PreferencesUnified prefs = getPreferencesUnified();
@@ -204,7 +182,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_05_PreferencesUnified_StressTest_Commit() {
-
     meter().loop("run " + ITERATIONS + " edit commits.");
     for (int i = 0, len = ITERATIONS; i < len; i++) {
       final PreferencesUnified prefs = getPreferencesUnified();
@@ -279,7 +256,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_08_PreferencesDb_StressTest_Apply() {
-
     meter().loop("run " + ITERATIONS_L + " edit applyies.");
     for (int i = 0, len = ITERATIONS_L; i < len; i++) {
       final SharedPreferences prefs = getDbPreferences();
@@ -295,7 +271,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
   @LargeTest
   public void test_09_PreferencesDb_StressTest_Commit() {
-
     meter().loop("run " + ITERATIONS + " edit commits.");
     for (int i = 0, len = ITERATIONS; i < len; i++) {
       final SharedPreferences prefs = getDbPreferences();
@@ -449,7 +424,31 @@ public class SharedPreferencesTests extends PerformanceTests {
     assertEquals(ExtraLongString, data);
   }
 
-	/* ================================= [NESTED CLASSES DECLARATIONS] ====================================== */
+  @Override
+  public void warmUp() {
+    if (null == TestSetValues || TestSetValues.isEmpty()) {
+      //			CountryDao dao = new CountryDao(getContext());
+      //			dao.init();
+      //
+      //			extracted = dao.getAll();
+
+      TestSetValues.add("set string #1");
+      TestSetValues.add("set string #2");
+      TestSetValues.add("set string #3");
+      TestSetValues.add("set string #4");
+
+      final StringBuilder dumpString = new StringBuilder(0xffff * 4);
+
+      while (dumpString.length() < 0xffff * 3) {
+        //                 0         0         0         0         0         0
+        dumpString.append("This is dummy string for testing the chunks logic .");
+      }
+
+      ExtraLongString = dumpString.toString();
+    }
+  }
+
+	/* [ NESTED DECLARATIONS ] ======================================================================================= */
 
   /** Serialize to/from JSON with use of standard {@link org.json.JSONObject}. */
   private static final class OrgJsonSerializer
@@ -479,7 +478,6 @@ public class SharedPreferencesTests extends PerformanceTests {
 
           return toMap(extracted);
         } catch (final Throwable ignored) {
-
         }
       }
 
@@ -526,5 +524,4 @@ public class SharedPreferencesTests extends PerformanceTests {
       return list;
     }
   }
-
 }
