@@ -1,4 +1,4 @@
-# UnifiedPreferences
+# UnifiedPreferences (uniprefs)
 
 Unified ```SharedPreferences``` for Android. Allows to use DB, JSON in addition to XML as a low level
 storage for SharedPreferences. Highly improved performance on low end devices. Fixed several known performance
@@ -29,10 +29,13 @@ _Sorry, no names here._
 
 # Usage
 
-For examples take look into Unit Tests. ![Unit Tests][1]
+For examples take look into Unit Tests. [Unit Tests - SharedPreferencesTests.java][1]
 
 
 ```java
+private static final String UNIT_TESTS_PREFS = "uniprefs.data.unit.tests.prefs";
+private static final String UNIT_TESTS_DB = "uniprefs.data.unit.tests";
+
 public PreferencesUnified getPreferencesUnified() {
   return new PreferencesUnified(getContext(), UNIT_TESTS_PREFS, OrgJsonSerializer.Instance);
 }
