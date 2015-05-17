@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="action_settings">Настройки</string>
+  <string name="hintLogin">Имя или иМейл</string>
+  <string name="labelChooseGroup">Выберите Группу</string>
+  <string name="labelConfirmPassword">Подтвердите пароль:</string>
+  <string name="labelGroup">Выберите Группу:</string>
+  <string name="labelLogin">Имя:</string>
+  <string name="labelPassword">Пароль:</string>
+  <string name="labelRememberLogin">Запомнить Имя</string>
+  <string name="labelRememberPassword">Запомнить Пароль</string>
+  <string name="labelLastOpened">Продолжить где вы остановились</string>
+  <string name="btnProceed">Продолжить</string>
+  <string name="labelSelectGroup">Выбирать группу при каждом старте</string>
+</resources>

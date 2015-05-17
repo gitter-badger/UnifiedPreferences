@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="hintLogin">Användarnamn eller e-mail</string>
+  <string name="action_settings">Inställningar</string>
+  <string name="btnProceed">Fortsätt</string>
+  <string name="labelChooseGroup">Välj grupp</string>
+  <string name="labelGroup">Välj grupp:</string>
+  <string name="labelConfirmPassword">Bekräfta Lösenord:</string>
+  <string name="labelLastOpened">Fortsätt där du slutade</string>
+  <string name="labelLogin">Logga In:</string>
+  <string name="labelPassword">Lösenord:</string>
+  <string name="labelRememberLogin">Kom ihåg inloggning</string>
+  <string name="labelRememberPassword">Kom ihåg lösenord</string>
+  <string name="labelSelectGroup">Välj grupp på varje start</string>
+</resources>
