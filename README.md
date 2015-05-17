@@ -1,5 +1,7 @@
 # UnifiedPreferences (uniprefs)
 
+[![Join the chat at https://gitter.im/OleksandrKucherenko/UnifiedPreferences](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/OleksandrKucherenko/UnifiedPreferences?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Unified ```SharedPreferences``` for Android. Allows to use DB, JSON in addition to XML as a low level
 storage for SharedPreferences. Highly improved performance on low end devices. Fixed several known performance
 and OS resources leaks problems (which is still actual for Android 5.1.x).
